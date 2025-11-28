@@ -123,4 +123,16 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | RabbitMQ Configuration
+    |--------------------------------------------------------------------------
+    */
+
+    'rabbitmq_host' => env('RABBITMQ_HOST', 'localhost'),
+    'rabbitmq_port' => env('RABBITMQ_PORT', 5672),
+    'rabbitmq_user' => env('RABBITMQ_USER', 'guest'),
+    'rabbitmq_pass' => env('RABBITMQ_PASS', 'guest'),
+    'rabbitmq_queue' => env('RABBITMQ_QUEUE', 'producer_events'),
+
 ];

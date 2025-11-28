@@ -8,14 +8,6 @@ services:
       - ./src:/var/www
     ports:
       - "8000:8000"
-    env_file:
-      - .env
-    environment:
-      RABBITMQ_HOST: ${RABBITMQ_HOST}
-      RABBITMQ_PORT: ${RABBITMQ_PORT}
-      RABBITMQ_USER: ${RABBITMQ_USER}
-      RABBITMQ_PASS: ${RABBITMQ_PASSWORD}
-      RABBITMQ_QUEUE: ${RABBITMQ_QUEUE}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     command: php artisan serve --host=0.0.0.0 --port=8000

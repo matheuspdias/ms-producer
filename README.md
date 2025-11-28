@@ -32,10 +32,8 @@ cd ms-producer
 ### 2. Configure as variáveis de ambiente
 
 ```bash
-cp .env.example .env
+cp src/.env.example src/.env
 ```
-
-**IMPORTANTE**: O `.env` na raiz é para variáveis do Docker/RabbitMQ. O Laravel usa `src/.env`.
 
 ### 3. Suba os containers
 
@@ -157,12 +155,12 @@ ms-producer/
 │   │   │   └── Requests/               # Form Requests
 │   │   └── Services/                   # Services (lógica de negócio)
 │   ├── routes/api.php                  # Rotas da API
-│   └── config/
-│       ├── app.php                     # Configurações da app
-│       └── l5-swagger.php              # Configuração Swagger
+│   ├── config/
+│   │   ├── app.php                     # Configurações da app
+│   │   └── l5-swagger.php              # Configuração Swagger
+│   └── .env.example                    # Template de variáveis
 ├── Dockerfile
 ├── docker-compose.yml
-├── .env.example                        # Template de variáveis
 ├── API_EXAMPLES.md                     # Exemplos de uso
 ├── POSTMAN_GUIDE.md                    # Guia do Postman
 ├── SWAGGER_GUIDE.md                    # Guia do Swagger

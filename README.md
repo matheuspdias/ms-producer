@@ -48,7 +48,15 @@ A aplicação estará disponível em: **http://localhost:8000**
 
 ## 📡 Uso da API
 
-### Endpoints
+### 📖 Documentação Swagger
+
+A documentação completa da API está disponível via Swagger UI:
+
+**http://localhost:8000/api/documentation**
+
+A documentação é gerada automaticamente a partir das anotações nos controllers usando **Traits** para manter o código limpo e organizado.
+
+📘 **[Ver Guia Completo do Swagger](SWAGGER_GUIDE.md)**
 
 #### Health Check
 ```bash
@@ -137,18 +145,27 @@ RABBITMQ_PASS=rabbit
 
 ```
 ms-producer/
-├── src/                          # Código Laravel
+├── src/                                # Código Laravel
 │   ├── app/
 │   │   ├── Http/
-│   │   │   ├── Controllers/      # Controllers
-│   │   │   ├── Middleware/       # Middlewares customizados
-│   │   │   └── Requests/         # Form Requests
-│   │   └── Services/             # Services (lógica de negócio)
-│   ├── routes/api.php            # Rotas da API
-│   └── config/app.php            # Configurações
+│   │   │   ├── Controllers/
+│   │   │   │   ├── Controller.php      # Base com anotações Swagger globais
+│   │   │   │   ├── UserController.php  # Controller limpo (usa trait)
+│   │   │   │   └── Traits/
+│   │   │   │       └── SwaggerUserDocs.php  # Documentação Swagger
+│   │   │   ├── Middleware/             # Middlewares customizados
+│   │   │   └── Requests/               # Form Requests
+│   │   └── Services/                   # Services (lógica de negócio)
+│   ├── routes/api.php                  # Rotas da API
+│   └── config/
+│       ├── app.php                     # Configurações da app
+│       └── l5-swagger.php              # Configuração Swagger
 ├── Dockerfile
 ├── docker-compose.yml
-├── .env.example                  # Template de variáveis
+├── .env.example                        # Template de variáveis
+├── API_EXAMPLES.md                     # Exemplos de uso
+├── POSTMAN_GUIDE.md                    # Guia do Postman
+├── SWAGGER_GUIDE.md                    # Guia do Swagger
 └── README.md
 ```
 
@@ -159,8 +176,11 @@ ms-producer/
 ✅ Logs estruturados
 ✅ Middleware para forçar JSON
 ✅ Health check endpoint
-✅ Documentação completa
+✅ **Documentação Swagger** (usando Traits)
+✅ Documentação completa (Markdown)
 ✅ Coleção Postman
+✅ Arquitetura em camadas limpa
+✅ Separação de responsabilidades (Traits para docs)
 
 ## 📝 Licença
 

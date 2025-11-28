@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\SwaggerUserDocs;
 use App\Http\Requests\UserRequest;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
@@ -9,6 +10,7 @@ use Exception;
 
 class UserController extends Controller
 {
+    use SwaggerUserDocs;
     private UserService $userService;
 
     public function __construct(UserService $userService)

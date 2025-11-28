@@ -107,12 +107,6 @@ docker compose down
 
 # Acessar o container
 docker compose exec app bash
-
-# Executar comandos artisan
-docker compose exec app php artisan <comando>
-
-# Rodar testes
-docker compose exec app php artisan test
 ```
 
 ## 🔧 Troubleshooting

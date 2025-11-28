@@ -54,8 +54,6 @@ A documentação completa da API está disponível via Swagger UI:
 
 A documentação é gerada automaticamente a partir das anotações nos controllers usando **Traits** para manter o código limpo e organizado.
 
-📘 **[Ver Guia Completo do Swagger](SWAGGER_GUIDE.md)**
-
 #### Health Check
 ```bash
 GET http://localhost:8000/api/health

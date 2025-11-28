@@ -81,6 +81,12 @@ Usuário: rabbit
 Senha: rabbit
 ```
 
+### Filas Dinâmicas
+
+O microserviço utiliza filas específicas por contexto:
+- **user_events**: Eventos de usuários (cadastro, atualização, etc.)
+- Futuros endpoints terão suas próprias filas (ex: `order_events`, `payment_events`)
+
 ### Estrutura do Evento
 
 ```json

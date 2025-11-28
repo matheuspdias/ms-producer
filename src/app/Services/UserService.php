@@ -8,6 +8,7 @@ use Exception;
 class UserService
 {
     private RabbitMQService $rabbitMQService;
+    private const QUEUE_NAME = 'user_events';
 
     public function __construct(RabbitMQService $rabbitMQService)
     {
@@ -19,9 +20,10 @@ class UserService
         try {
             $event = $this->prepareUserEvent($userData);
 
-            $this->rabbitMQService->publish($event);
+            $this->rabbitMQService->publish($event, self::QUEUE_NAME);
 
             Log::info('User creation event sent to queue', [
+                'queue' => self::QUEUE_NAME,
                 'user_email' => $userData['email']
             ]);
 

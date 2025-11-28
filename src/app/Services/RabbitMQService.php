@@ -11,11 +11,9 @@ class RabbitMQService
 {
     private AMQPStreamConnection $connection;
     private $channel;
-    private string $queue;
 
     public function __construct()
     {
-        $this->queue = config('app.rabbitmq_queue', env('RABBITMQ_QUEUE', 'producer_events'));
         $this->connect();
     }
 
@@ -31,17 +29,7 @@ class RabbitMQService
 
             $this->channel = $this->connection->channel();
 
-            $this->channel->queue_declare(
-                $this->queue,
-                false,
-                true,
-                false,
-                false
-            );
-
-            Log::info('RabbitMQ connection established successfully', [
-                'queue' => $this->queue
-            ]);
+            Log::info('RabbitMQ connection established successfully');
         } catch (Exception $e) {
             Log::error('Failed to connect to RabbitMQ', [
                 'error' => $e->getMessage(),
@@ -51,9 +39,18 @@ class RabbitMQService
         }
     }
 
-    public function publish(array $data, string $routingKey = ''): void
+    public function publish(array $data, string $queue): void
     {
         try {
+            // Declara a fila se não existir
+            $this->channel->queue_declare(
+                $queue,
+                false,
+                true,
+                false,
+                false
+            );
+
             $message = new AMQPMessage(
                 json_encode($data),
                 [
@@ -66,17 +63,17 @@ class RabbitMQService
             $this->channel->basic_publish(
                 $message,
                 '',
-                $routingKey ?: $this->queue
+                $queue
             );
 
             Log::info('Message published to RabbitMQ', [
-                'queue' => $this->queue,
-                'routing_key' => $routingKey ?: $this->queue,
+                'queue' => $queue,
                 'data' => $data
             ]);
         } catch (Exception $e) {
             Log::error('Failed to publish message to RabbitMQ', [
                 'error' => $e->getMessage(),
+                'queue' => $queue,
                 'data' => $data
             ]);
             throw new Exception('Erro ao publicar mensagem na fila: ' . $e->getMessage());

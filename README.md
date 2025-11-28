@@ -4,7 +4,7 @@ Microserviço producer para cadastro de usuários com integração ao RabbitMQ.
 
 ## 🚀 Tecnologias
 
-- PHP 8.2+
+- PHP 8.4
 - Laravel 12
 - RabbitMQ
 - Docker
@@ -22,7 +22,7 @@ Arquitetura em camadas:
 ### 1. Clone o repositório
 
 ```bash
-git clone <seu-repositorio>
+git clone https://github.com/matheuspdias/ms-producer.git
 cd ms-producer
 ```
 
@@ -51,23 +51,6 @@ A aplicação estará disponível em: **http://localhost:8000**
 ```bash
 GET http://localhost:8000/api/health
 ```
-
-#### Cadastrar Usuário
-```bash
-POST http://localhost:8000/api/users
-Content-Type: application/json
-
-{
-  "name": "João da Silva",
-  "email": "joao.silva@example.com"
-}
-```
-
-### 📖 Documentação Completa
-
-- [API Examples](API_EXAMPLES.md) - Exemplos de requisições e respostas
-- [Postman Guide](POSTMAN_GUIDE.md) - Guia completo para uso com Postman
-- [MS-Producer.postman_collection.json](MS-Producer.postman_collection.json) - Coleção Postman
 
 ## ✅ Validações
 

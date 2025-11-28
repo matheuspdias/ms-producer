@@ -23,6 +23,9 @@ Arquitetura em camadas:
 
 ```bash
 git clone https://github.com/matheuspdias/ms-producer.git
+```
+
+```bash
 cd ms-producer
 ```
 
@@ -37,9 +40,9 @@ cp .env.example .env
 ### 3. Suba os containers
 
 ```bash
-docker compose build
-docker compose up -d
+docker compose up -d --build
 ```
+
 
 A aplicação estará disponível em: **http://localhost:8000**
 

@@ -19,30 +19,19 @@ Arquitetura em camadas:
 
 ## 🐳 Setup do Projeto
 
-### 1. Clone o repositório
-
 ```bash
+# 1. Clone e entre no diretório
 git clone https://github.com/matheuspdias/ms-producer.git
-```
-
-```bash
 cd ms-producer
-```
 
-### 2. Configure as variáveis de ambiente
-
-```bash
+# 2. Configure o ambiente e suba os containers
 cp src/.env.example src/.env
-```
-
-### 3. Suba os containers
-
-```bash
 docker compose up -d --build
 ```
 
-
 A aplicação estará disponível em: **http://localhost:8000**
+
+> **Nota**: O `composer install` é executado automaticamente na primeira inicialização do container.
 
 ## 📡 Uso da API
 

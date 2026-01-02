@@ -33,6 +33,36 @@ class UserController extends Controller
         }
     }
 
+    public function index(): JsonResponse
+    {
+        try {
+            $result = $this->userService->getAllUsers();
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro ao buscar usuários',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function show(string $id): JsonResponse
+    {
+        try {
+            $result = $this->userService->getUserById($id);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro ao buscar usuário',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function healthCheck(): JsonResponse
     {
         return response()->json([

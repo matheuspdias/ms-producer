@@ -8,11 +8,13 @@ use Exception;
 class UserService
 {
     private RabbitMQService $rabbitMQService;
+    private HttpClientService $httpClient;
     private const QUEUE_NAME = 'user_events';
 
-    public function __construct(RabbitMQService $rabbitMQService)
+    public function __construct(RabbitMQService $rabbitMQService, HttpClientService $httpClient)
     {
         $this->rabbitMQService = $rabbitMQService;
+        $this->httpClient = $httpClient;
     }
 
     public function createUser(array $userData): array
@@ -45,6 +47,41 @@ class UserService
             ]);
 
             throw new Exception('Erro ao processar cadastro de usuário: ' . $e->getMessage());
+        }
+    }
+
+    public function getAllUsers(): array
+    {
+        try {
+            $response = $this->httpClient->get('users');
+
+            Log::info('Users list fetched successfully');
+
+            return $response;
+        } catch (Exception $e) {
+            Log::error('Error fetching users list', [
+                'error' => $e->getMessage()
+            ]);
+
+            throw new Exception('Erro ao buscar lista de usuários: ' . $e->getMessage());
+        }
+    }
+
+    public function getUserById(string $id): array
+    {
+        try {
+            $response = $this->httpClient->get("users/{$id}");
+
+            Log::info('User fetched successfully', ['user_id' => $id]);
+
+            return $response;
+        } catch (Exception $e) {
+            Log::error('Error fetching user', [
+                'user_id' => $id,
+                'error' => $e->getMessage()
+            ]);
+
+            throw new Exception('Erro ao buscar usuário: ' . $e->getMessage());
         }
     }
 

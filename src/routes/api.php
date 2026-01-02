@@ -6,5 +6,7 @@ use App\Http\Controllers\UserController;
 Route::get('/health', [UserController::class, 'healthCheck']);
 
 Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/{id}', [UserController::class, 'show']);
     Route::post('/', [UserController::class, 'store']);
 });

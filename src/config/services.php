@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'consumer' => [
+        'url' => env('CONSUMER_API_URL', 'http://localhost:8081/api/v1'),
+    ],
+
 ];

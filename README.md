@@ -154,9 +154,6 @@ ms-producer/
 │   └── .env.example                    # Template de variáveis
 ├── Dockerfile
 ├── docker-compose.yml
-├── API_EXAMPLES.md                     # Exemplos de uso
-├── POSTMAN_GUIDE.md                    # Guia do Postman
-├── SWAGGER_GUIDE.md                    # Guia do Swagger
 └── README.md
 ```
 
